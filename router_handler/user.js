@@ -2,6 +2,9 @@
 const db = require('../db/index')
 const bcrypt = require('bcryptjs')
 
+const jwt = require('jsonwebtoken')
+const config = require('../config')
+
 exports.register = (req, res)=>{
     var userInfo = req.body
     const sql = 'select * from hr_users where username=?'
@@ -45,6 +48,14 @@ exports.login = (req, res)=>{
         if(!compareResult){
             return res.cc('用户名或者密码错误！')
         }
-        res.send('ok')
+        var user = { ...results[0], password: '' }
+        var token = jwt.sign(user,config.jwSecretKey,{
+            expiresIn: config.expiresIn
+        })
+        res.send({
+            status: 0,
+            token: 'Bearer ' + token,
+            message: '登录成功！'
+        })
     })
 }

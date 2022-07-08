@@ -1,0 +1,67 @@
+baseUrl: http://192.168.0.105:3000
+
+员工花名册:
+获取所有员工数据
+method: GET
+url: /personnel/getPersonnel
+query: 空
+
+
+分页获取所有员工数据
+method: POST
+url: /personnel/personnel
+query: {
+  pageNum
+  pageSize
+}
+body: {
+  name
+  address
+  telephone
+}
+
+
+
+增加员工数据
+method: POST
+url: /personnel/addPersonnel
+query: 空
+body:  {
+  	name,
+        code,
+        address,
+        telephone,
+        birthday,
+        joinday,
+        education
+}
+
+
+
+删除员工数据
+method: POST
+url: /personnel/deletePersonnel
+query: 空
+body:  {
+  	id
+}
+
+
+更新员工数据
+method: POST
+url: /personnel/deletePersonnel
+query: 空
+body:  {
+  	id
+	name,
+        code,
+        address,
+        telephone,
+        birthday,
+        joinday,
+        education
+}
+
+
+
+
